@@ -10,11 +10,11 @@ namespace Api3layer1.Controllers
     {
         [HttpGet]
         [Route("api/name/{id}")]
-        public HttpResponseMessage GetNames(int id)
+        public HttpResponseMessage GetName(int id)
         {
             try
             {
-                var data = UserService.GetName(id);
+                var data = UserService.Getnews(id);
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch

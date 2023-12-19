@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BLL.DTOs;
+using DAL;
 using DAL.EF.Models;
 using DAL.Repos;
 using System.Collections.Generic;
@@ -9,17 +10,17 @@ namespace BLL.Services
     public class UserService
     {
        
-public static string GetName(int id)
+public static string Getnews(int id)
         {
-            id += 100;
-            var data = UserRepo.GetRepo(id);
-            return data;
+            
+            var data = DataAccessFactory.NewsData().Get(id);
+            return null;
         }
 
         public static List<newsDto> GetNews()
         {
             // Retrieve your News entities, assuming UserRepo.GetNews() returns a collection of News
-            var newsEntities = UserRepo.GetNews();
+            var newsEntities = DataAccessFactory.NewsData().Get();
 
             // Configure AutoMapper
             var config = new MapperConfiguration(cfg =>
@@ -55,7 +56,7 @@ public static string GetName(int id)
             var newsEntity = mapper.Map<News>(newsDto);
 
             // Pass the mapped entity to the repository's Add method
-            return UserRepo.Add(newsEntity);
+            return DataAccessFactory.NewsData().Add(newsEntity);
         }
     }
 }
